@@ -11,7 +11,8 @@ func main() {
 	cmd := exec.Command("sh")
 	cmd.SysProcAttr = &syscall.SysProcAttr{
 		//隔离uts
-		Cloneflags: syscall.CLONE_NEWUTS,
+		Cloneflags: syscall.CLONE_NEWUTS |
+			syscall.CLONE_NEWNS,
 	}
 
 	cmd.Stdin = os.Stdin
