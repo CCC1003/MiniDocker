@@ -52,7 +52,7 @@ func (c *CpuSubSystem) Apply(cgroupPath string, pid int) error {
 		if err != nil {
 			return err
 		}
-		tasksPath := path.Join(subsystemCgroupPath, "task")
+		tasksPath := path.Join(subsystemCgroupPath, "tasks")
 		err = os.WriteFile(tasksPath, []byte(strconv.Itoa(pid)), os.ModePerm)
 		if err != nil {
 			logrus.Errorf("write pid to tasks,path:%s,pid:%d,err:%v", tasksPath, pid, err)

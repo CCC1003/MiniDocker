@@ -2,7 +2,9 @@ package main
 
 import (
 	"MiniDocker/cgroups/subsystem"
+	"MiniDocker/container"
 	"fmt"
+	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
 )
 
@@ -44,9 +46,21 @@ var runCommand = cli.Command{
 		//cmdArray[0] 为命令内容，后面的为命令参数
 		var cmdArray []string
 		for _, arg := range context.Args() {
-			cmdArray := append(cmdArray, arg)
+			cmdArray = append(cmdArray, arg)
 		}
 
+		Run(cmdArray, tty, res)
+
 		return nil
+	},
+}
+
+// 初始化容器内容，挂载proc文件系统，运行用户执行程序
+var initCommand = cli.Command{
+	Name:  "init",
+	Usage: "Init container process run user's process in container. Do not call it outside",
+	Action: func(context *cli.Context) error {
+		logrus.Infof("init come on")
+		return container.RunContainerInitProcess()
 	},
 }
