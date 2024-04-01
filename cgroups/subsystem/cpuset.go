@@ -14,6 +14,7 @@ type CpuSetSubSystem struct {
 func (*CpuSetSubSystem) Name() string {
 	return "cpuset"
 }
+
 func (c *CpuSetSubSystem) Set(cgroupPath string, res *ResourceConfig) error {
 	subsystemCgroupPath, err := GetCgroupPath(c.Name(), cgroupPath, true)
 	if err != nil {

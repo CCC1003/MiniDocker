@@ -21,7 +21,6 @@ func GetCgroupPath(subsystem string, cgroupPath string, autoCreate bool) (string
 		if err := os.MkdirAll(cgroupTotalPath, 0755); err != nil {
 			return "", err
 		}
-
 	}
 	return cgroupTotalPath, nil
 }

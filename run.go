@@ -28,8 +28,8 @@ func Run(cmdArray []string, tty bool, res *subsystem.ResourceConfig) {
 	cgroupManager.Set(res)
 	//将容器进程，加入到各个subsystem挂载对应的cgroup中
 	cgroupManager.Apply(parent.Process.Pid)
-	sendInitCommand(cmdArray, writePipe)
 
+	sendInitCommand(cmdArray, writePipe)
 	parent.Wait()
 }
 
