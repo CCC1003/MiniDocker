@@ -35,6 +35,7 @@ var runCommand = cli.Command{
 		}
 
 		tty := context.Bool("ti")
+		volume := context.String("v")
 
 		res := &subsystem.ResourceConfig{
 			MemoryLimit: context.String("m"),
@@ -49,7 +50,7 @@ var runCommand = cli.Command{
 			cmdArray = append(cmdArray, arg)
 		}
 
-		Run(cmdArray, tty, res)
+		Run(cmdArray, tty, res, volume)
 
 		return nil
 	},

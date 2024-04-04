@@ -9,8 +9,8 @@ import (
 	"strings"
 )
 
-func Run(cmdArray []string, tty bool, res *subsystem.ResourceConfig) {
-	parent, writePipe := container.NewParentProcess(tty)
+func Run(cmdArray []string, tty bool, res *subsystem.ResourceConfig, volume string) {
+	parent, writePipe := container.NewParentProcess(tty, volume)
 	if parent == nil {
 		logrus.Errorf("failed to new parent process")
 		return
@@ -30,6 +30,7 @@ func Run(cmdArray []string, tty bool, res *subsystem.ResourceConfig) {
 	cgroupManager.Apply(parent.Process.Pid)
 
 	sendInitCommand(cmdArray, writePipe)
+
 	parent.Wait()
 }
 
